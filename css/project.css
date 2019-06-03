@@ -1,0 +1,47 @@
+body{
+  margin: 0;
+  background-image: linear-gradient(#c0c0ff, #6060ff);
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow-x: hidden;
+}
+
+header{
+  margin: 15px;
+  width: calc(100vw - 30px);
+  font-size: 30px;
+}
+
+#headerTitle{
+  position: relative;
+  top: 5px;
+  height: 100px;
+  font-size: 80px;
+  width: 400px;
+  margin: 10px calc(50vw - 15px - 200px);
+  text-align: center;
+  background-color: #357dac;
+  border: 2px solid white;
+}
+
+#logInButton{
+  position: absolute;
+  top: 30px;
+  right: 130px;
+}
+
+#titleBarLinks{
+  text-align: center;
+  color: #156faa;
+}
+
+#titleBarLinks > a{
+  margin: 10px;
+  text-decoration: none;
+}
+
+#filler{
+  margin: 0;
+  height: 550px;
+  width: 100vw;
+}
