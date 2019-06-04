@@ -1,6 +1,6 @@
 body{
   margin: 0;
-  background-image: linear-gradient(#c0c0ff, #6060ff);
+  background-image: linear-gradient(#d8d8ff, #8080ff);
   background-repeat: no-repeat;
   background-size: cover;
   overflow-x: hidden;
@@ -40,8 +40,10 @@ header{
   text-decoration: none;
 }
 
-#filler{
-  margin: 0;
-  height: 550px;
-  width: 100vw;
+#hotProductsDiv{
+  margin: 25px calc(12.5vw - 2px);
+  height: 506px;
+  width: 75vw;
+  background-color: #1970aa;
+  border: 5px solid #808080;
 }
