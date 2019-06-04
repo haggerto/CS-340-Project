@@ -1,3 +1,5 @@
-table{
-  background-color: #ffffff;
+#hotProductsDiv{
+  display: flex;
+  flex-direction: row;
+  overflow-y: auto;
 }

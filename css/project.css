@@ -40,7 +40,7 @@ header{
   text-decoration: none;
 }
 
-#hotProductsDiv{
+.mainContentBox{
   margin: 25px calc(12.5vw - 2px);
   height: 506px;
   width: 75vw;
