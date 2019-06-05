@@ -28,6 +28,21 @@ header{
   position: absolute;
   top: 30px;
   right: 130px;
+  cursor: pointer;
+}
+
+#logInPopup:not(.hidden){
+  position: absolute;
+  top: 70px;
+  right: 130px;
+  background-color: #1970aa;
+  display: flex;
+  flex-direction: column;
+}
+
+#logInPopup > input{
+  margin: 5px 10px;
+  font-size: 20px;
 }
 
 #titleBarLinks{
@@ -46,4 +61,8 @@ header{
   width: 75vw;
   background-color: #1970aa;
   border: 5px solid #808080;
+}
+
+.hidden{
+  display: none;
 }
