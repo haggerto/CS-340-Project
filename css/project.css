@@ -43,6 +43,7 @@ header{
 #logInPopup > input{
   margin: 5px 10px;
   font-size: 20px;
+	width: 200px;
 }
 
 #titleBarLinks{

@@ -25,7 +25,7 @@
 				die('Could not connect: ' . mysql_error());
 			}
 
-			$query = "SELECT productName, normalPrice 
+			$query = "SELECT productName, normalPrice, productID
 								FROM Products NATURAL JOIN (
 									SELECT * FROM getProductSaleCount ORDER BY saleCount DESC LIMIT 15) BestSellers";
 			$result = mysqli_query($conn, $query);
@@ -33,14 +33,16 @@
 				die("Query to show fields from table failed");
 			}
 			$fields_num = mysqli_num_fields($result);
-			
+
 			while($row = mysqli_fetch_row($result)) {
 				echo '<div class="bestSellerDiv">';
 				echo '<p class="productName">';
 				echo $row[0];
 				echo '</p><p class="productCost">&#36;';
 				echo $row[1];
-				echo '</p></div>';
+				echo '</p><input type="button" onclick="addToCart(';
+				echo $row[2];
+				echo ')" class="addToCartButton" value="Add to Cart"></div>';
 			}
 
 			mysqli_free_result($result);
@@ -49,8 +51,3 @@
 		</div>
 	</body>
 </html>
-
-
-
-
-	
