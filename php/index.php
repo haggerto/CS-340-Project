@@ -29,14 +29,14 @@
 
 			$query = "SELECT productName, normalPrice 
 								FROM Products NATURAL JOIN (
-									SELECT * FROM getProductSaleCount ORDER BY saleCount DESC LIMIT 15) ";
+									SELECT * FROM getProductSaleCount ORDER BY saleCount DESC LIMIT 15) BestSellers";
 
             $result = mysqli_query($conn, $query);
             if (!$result) {
                 die("Query to show fields from table failed");
             }
             $fields_num = mysqli_num_fields($result);
-			echo "<h1>BestSaller:</h1>";
+			echo "<h1>BestSellers:</h1>";
 			echo "<table id='t01' border='1'><tr>";
 			
 			echo "</tr>\n";
