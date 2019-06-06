@@ -36,18 +36,14 @@
                 die("Query to show fields from table failed");
             }
             $fields_num = mysqli_num_fields($result);
-			echo "<h1>BestSellers:</h1>";
-			echo "<table id='t01' border='1'><tr>";
 			
-			echo "</tr>\n";
-			
-		    while($row = mysqli_fetch_row($result)) {	
-			    echo "<tr>";	
-				// $row is array... foreach( .. ) puts every element
-				// of $row to $cell variable	
-				foreach($row as $cell)		
-					echo "<td>$cell</td>";	
-				echo "</tr>\n";
+		    while($row = mysqli_fetch_row($result)) {
+		    	echo '<div class="bestSellerDiv">';
+			echo '<p class="productName">';
+			echo $row[0];
+			echo '</p><p class="productCost">&#36;';
+			echo $row[1];
+			echo '</p></div>';
             }
             
 

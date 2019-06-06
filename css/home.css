@@ -2,4 +2,23 @@
   display: flex;
   flex-direction: row;
   overflow-y: auto;
+  flex-wrap: wrap;
+}
+
+.bestSellerDiv{
+  border: 2px solid #808080;
+  font-size: 30px;
+  margin: 20px;
+  padding: 10px;
+  width: calc(18.75vw - 65px);
+  height: 200px;
+  text-align: center;
+}
+
+.productName{
+  text-decoration: underline;
+}
+
+.productCost{
+  color: #dbb000;
 }
