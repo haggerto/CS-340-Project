@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <?php
-	$currentpage="Products";
+	$currentpage="Shopping Cart";
 	include "page.php";
 ?>
 <html lang="en">
 	<head>
 		<meta charset="utf-8"></meta>
-		<title>Home Page</title>
+		<title>Shopping Cart</title>
 		<script src="../js/project.js" charset="utf-8" type="text/javascript" defer></script>
-		<script src="../js/products.js" charset="utf-8" type="text/javascript" defer></script>
+		<script src="../js/cart.js" charset="utf-8" type="text/javascript" defer></script>
 		<link rel="stylesheet" href="../css/project.css">
-		<link rel="stylesheet" href="../css/products.css">
+		<link rel="stylesheet" href="../css/cart.css">
 	</head>
 	<body>
 	<?php

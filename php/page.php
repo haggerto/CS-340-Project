@@ -2,7 +2,8 @@
 	$content = array(
 		"Home" => "./index.php",
 		"Products" => "products.php",
-		"On Sale" => "on-sale.php",
-		"Account" => "account.php",
-    "Information" => "information.php");
+		"Sales" => "sales.php",
+		"Account Information" => "account.php",
+		"Shopping Cart" => "cart.php",
+		"Information" => "information.php");
 ?>
