@@ -60,4 +60,9 @@ function submitLogIn(){
 	}
 }
 
-document.getElementById("logInButton").addEventListener("click",logInButtonClicked);
+if(document.getElementByID("logInButton")){
+	document.getElementById("logInButton").addEventListener("click",logInButtonClicked);
+}
+else{
+	document.getElementById("logOutButton").addEventListener("click",logOut);
+}
