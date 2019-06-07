@@ -60,7 +60,7 @@ function submitLogIn(){
 	}
 }
 
-if(document.getElementByID("logInButton")){
+if(document.getElementById("logInButton")!=undefined){
 	document.getElementById("logInButton").addEventListener("click",logInButtonClicked);
 }
 else{
