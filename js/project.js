@@ -1,6 +1,9 @@
-/*Gets the current logged in user*/
+/*Gets the username of the current user*/
 function getCurrentUser(){
-	//
+	var request = new XMLHttpRequest();
+	request.open("GET", "handleLogIns.php?type=getUser", false);
+	request.send(null);
+	return request.responseText;
 }
 
 /*Run when the log in button is clicked.

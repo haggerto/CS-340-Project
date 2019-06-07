@@ -6,6 +6,8 @@
 		$data = htmlspecialchars($data);
 		return $data;
 	}
+	
+	session_start();
 
 	$getType = $_GET["type"];
 	if($getType==="logIn"){	//try to log in as the specified user
@@ -27,9 +29,13 @@
 		$result = mysqli_query($connection, $query);
 
 		if(mysqli_num_rows($result) == 1){	//the username and password matched
-			session_start();
 			$_SESSION['user'] = $user;	//log in the user with a php session
-			echo "TRUE";
+			if(isset($_SESSION['user'])){	//session was successfully created
+				echo "TRUE";
+			}
+			else{
+				echo "FALSE";
+			}
 		}
 		else{
 			echo "FALSE";
@@ -42,8 +48,8 @@
 		echo "LOGOUT_DONE";
 	}
 	else if($getType==="getUser"){	//get the current user
-		if(isset($_SESSION["user"])){
-			echo $_SESSION["user"];
+		if(isset($_SESSION['user'])){
+			echo $_SESSION['user'];
 		}
 		else{
 			echo "NO_USER";
