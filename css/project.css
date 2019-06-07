@@ -24,7 +24,7 @@ header{
   border: 2px solid white;
 }
 
-#logInButton{
+.logInOutButton{
   position: absolute;
   top: 30px;
   right: 130px;

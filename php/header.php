@@ -1,6 +1,13 @@
 <header>
 	<div id="headerTitle"><?php echo $currentpage ?></div>
-	<div id="logInButton">Log In</div>
+	<?php
+		if(isset($_SESSION['user'])){	//user is logged in
+			echo '<div id="logOutButton" class="logInOutButton">Log Out</div>';
+		}
+		else{	//user is not logged in
+			echo '<div id="logInButton" class="logInOutButton">Log In</div>';
+		}
+	?>
 	<div id="logInPopup" class="hidden">
 		<input type="text" name="logInPopupUsernameField" id="logInPopupUsernameField" size="32" placeholder="Username">
 		<input type="password" name="logInPopupPasswordField" id="logInPopupPasswordField" size="32" placeholder="Password">
