@@ -1,6 +1,7 @@
 <header>
 	<div id="headerTitle"><?php echo $currentpage ?></div>
 	<?php
+		session_start();
 		if(isset($_SESSION['user'])){	//user is logged in
 			echo '<div id="logOutButton" class="logInOutButton">Log Out</div>';
 		}
