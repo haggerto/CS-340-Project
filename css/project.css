@@ -33,6 +33,11 @@ header{
   cursor: pointer;
 }
 
+.logInError{
+	font-size: 50px;
+	text-align: center;
+}
+
 #logInPopup:not(.hidden){
   position: absolute;
   top: 70px;

@@ -27,11 +27,18 @@
 				}
 				// Retrieve name of table selected
 
-				$query = "SELECT productName, normalPrice FROM Products WHERE numberInStock > 0";
+				$query = "SELECT productName, productCount, orderID FROM Products NATURAL JOIN (SELECT * FROM OrderContents NATURAL JOIN (SELECT * FROM Orders WHERE userID=”$currentUser” AND orderStatus=”shop”))
+				";
 
 				$result = mysqli_query($conn, $query);
 				if (!$result) {
-					die("Query to show fields from table failed");
+					if(!$currentUser)
+					{
+						die("<p class='logInError'>Login first</p>");
+					}
+					else {
+						die("Query to show fields from table failed");
+					}
 				}
 				$fields_num = mysqli_num_fields($result);
 				echo "<h1>Products:</h1>";
