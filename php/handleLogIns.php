@@ -47,7 +47,7 @@
 		session_destroy();
 		echo "LOGOUT_DONE";
 	}
-	else if($getType==="getUser"){	//get the current user
+	else if($getType==="getUser"){	//get the current user id
 		if(isset($_SESSION['user'])){
 			echo $_SESSION['user'];
 		}

@@ -20,6 +20,8 @@
 
 		<div id="hotProductsDiv" class="mainContentBox">
 		<?php
+			session_start();
+
 			$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 			if (!$conn) {
 				die('Could not connect: ' . mysql_error());
@@ -40,9 +42,13 @@
 				echo $row[0];
 				echo '</p><p class="productCost">&#36;';
 				echo $row[1];
-				echo '</p><input type="button" onclick="addToCart(';
-				echo $row[2];
-				echo ')" class="addToCartButton" value="Add to Cart"></div>';
+				echo '</p>';
+				if(isset($_SESSION['user'])){
+					echo '<input type="button" onclick="addToCart(';
+					echo $row[2];
+					echo ')" class="addToCartButton" value="Add to Cart">';
+				}
+				echo '</div>';
 			}
 
 			mysqli_free_result($result);

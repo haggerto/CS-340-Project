@@ -71,7 +71,40 @@ function submitChangeName(){
 }
 
 function submitChangePassword(){
-	//
+	var oldPass = document.getElementById("oldPassInput").value;
+	var newPass = document.getElementById("newPassInput").value;
+	var confirmPass = document.getElementById("confirmNewPassInput").value;
+	if(oldPass===""||newPass===""||confirmPass===""){
+		alert("Error: You must fill in all the fields before submitting");
+	}
+	else{
+		if(newPass!=confirmPass){
+			alert("Error: The new password does not match the confirmation password");
+		}
+		else{
+			var request = new XMLHttpRequest();
+			request.onreadystatechange = function (){
+				if(request.readyState === 4 && request.status === 200){
+					document.getElementById("newPassInput").value = "";
+					document.getElementById("confirmPassInput").value = "";
+					if(request.responseText==="BAD_PASS"){	//the old password was entered wrong
+						document.getElementById("oldPassInput").value = "";
+						alert("Error: The old password is incorrect");
+					}
+					else if(request.responseText === "TRUE"){	//the password was successfully changed
+						document.getElementById("oldPassInput").value = "";
+						document.getElementById("changePasswordPopup").classList.add("hidden");
+					}
+					else{
+						console.log(request.responseText);
+					}
+				}
+			};
+			var requestUrl = "updateAccountInformation.php?type='pass'&oldPass='"+oldPass+"'&newPass='"+newPass+"'";
+			request.open("POST",requestUrl,true);
+			request.send(null);
+		}
+	}
 }
 
 function submitNewCreditCard(){
