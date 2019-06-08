@@ -2,3 +2,72 @@
   width: 750px;
   margin: 10px calc(50vw - 15px - 375px);
 }
+
+.mainContentBox{
+	text-align: center;
+	overflow-y: auto;
+}
+
+.logInError{
+	font-size: 50px;
+	text-align: center;
+}
+
+h2{
+	font-size: 30px;
+	text-decoration: underline;
+}
+
+p{
+	font-size: 25px;
+}
+
+.fetchDataError{
+	font-size: 30px;
+	color: #ff0000;
+}
+
+table{
+	border: 2px solid black;
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+th, td{
+	border: 1px solid black;
+	padding: 0 5px;
+}
+
+th{
+	font-size: 25px;
+}
+
+td{
+	font-size: 25px;
+}
+
+.removeCreditCardButton{
+	font-family: sans-serif;
+	font-weight: bold;
+	background-color: #d00000;
+	border-radius: 25%;
+	padding: 0 5px;
+	cursor: pointer;
+}
+
+.removeCreditCardButton:hover{
+	background-color: #ff0000;
+}
+
+.editInfoButton{
+	margin: 0 5px;
+	padding: 3px 5px;
+	border-radius: 5px;
+	background-color: #b0b000;
+	cursor: pointer;
+}
+
+.editInfoButton:hover{
+	background-color: #d0d020;
+}

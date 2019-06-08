@@ -19,8 +19,8 @@
 			$contentLen = count($content);
 			$i = 0;	//used for checking for the last index
 			foreach ($content as $page => $location){
-				echo "<a href='$location?user=".$user."' >".$page."</a>";
-				if(++$i !== $contentLen){
+				echo "<a href='$location'>".$page."</a>";
+				if(++$i !== $contentLen){	//omit | after the last link
 					echo '|';
 				}
 			}

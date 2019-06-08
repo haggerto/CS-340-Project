@@ -21,6 +21,7 @@ function logOut(event){
 			var logInHtml = "<div id=\"logInButton\" class=\"logInOutButton\">Log In</div>";
 			document.getElementById("logOutButton").outerHTML = logInHtml;
 			document.getElementById("logInButton").addEventListener("click",logInButtonClicked);
+			location.reload(true); //refresh the page
 		}
 	}
 	request.open("GET", "handleLogIns.php?type=logOut", true);
@@ -47,6 +48,7 @@ function submitLogIn(){
 					document.getElementById("logInButton").outerHTML = logOutHtml;
 					//change the log in button to the log out button
 					document.getElementById("logOutButton").addEventListener("click", logOut);
+					location.reload(true);
 				}
 				else{
 					alert("The username and password did not match any account in our records");

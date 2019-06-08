@@ -6,7 +6,7 @@
 		$data = htmlspecialchars($data);
 		return $data;
 	}
-	
+
 	session_start();
 
 	$getType = $_GET["type"];
@@ -29,7 +29,7 @@
 		$result = mysqli_query($connection, $query);
 
 		if(mysqli_num_rows($result) == 1){	//the username and password matched
-			$_SESSION['user'] = $user;	//log in the user with a php session
+			$_SESSION['user'] = mysqli_fetch_row($result)[0];	//log in the user with a php session
 			if(isset($_SESSION['user'])){	//session was successfully created
 				echo "TRUE";
 			}
