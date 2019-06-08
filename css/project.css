@@ -1,6 +1,6 @@
 body{
   margin: 0;
-  background-image: linear-gradient(#d8d8ff, #8080ff);
+  background-image: linear-gradient(#000, 35%,#fff);
   background-repeat: no-repeat;
   background-size: cover;
   overflow-x: hidden;
@@ -15,6 +15,7 @@ header{
 #headerTitle{
   position: relative;
   top: 5px;
+  color: #fff;
   height: 100px;
   font-size: 80px;
   width: 400px;
@@ -28,6 +29,7 @@ header{
   position: absolute;
   top: 30px;
   right: 130px;
+  color: #fff;
   cursor: pointer;
 }
 
@@ -48,7 +50,7 @@ header{
 
 #titleBarLinks{
   text-align: center;
-  color: #156faa;
+  color: #fff;
 }
 
 #titleBarLinks > a{
@@ -56,11 +58,23 @@ header{
   text-decoration: none;
 }
 
+#titleBarLinks > a:hover:not(.active){
+  background-color: #A8A8A8;
+}
+
+#titleBarLinks > a:visited{
+  color: #fff;
+}
+
+#titleBarLinks > a:active{
+  color: #000;
+}
+
 .mainContentBox{
   margin: 25px calc(12.5vw - 2px);
   height: 506px;
   width: 75vw;
-  background-color: #1970aa;
+  background-color: #fff;
   border: 5px solid #808080;
 }
 
