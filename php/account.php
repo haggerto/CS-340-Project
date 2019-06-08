@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="../css/project.css">
 		<link rel="stylesheet" href="../css/account.css">
 	</head>
-	<body>
+	<body tabindex="1">
 		<?php
 		include 'dbconnect.php';
 		include 'header.php';
@@ -37,6 +37,7 @@
 				else{
 					$row = mysqli_fetch_row($result);
 					$userId = $row[0];
+					$userRealName = $row[3];
 					echo "<h2>Username</h2><p class='usernameText'>";
 					echo $row[1];	//display the username
 					echo "</p><h2>Real Name</h2><p class='userRealNameText'>";
@@ -56,7 +57,7 @@
 					if (!$ccData) {	//failed to get user data
 						die("<p class='fetchDataError'>Could not fetch credit card data</p>");
 					}
-					else{
+					else{	//successfully got user data
 						echo "<h2>Credit Cards</h2>";
 						echo "<table class='creditCardDataTable'>";
 						echo "<tr><th></th><th>Company</th><th>Card Number</th><th>Card Holder</th></tr>";
@@ -86,6 +87,28 @@
 
 			mysqli_close($conn);
 			?>
+			<div id="changePasswordPopup" tabindex="2" class="popup hidden">
+				<input type="password" name="oldPassInput" id="oldPassInput" placeholder="Old Password">
+				<input type="password" name="newPassInput" id="newPassInput" placeholder="New Password">
+				<input type="password" name="confirmNewPassInput" id="confirmNewPassInput" placeholder="Confirm New Password">
+				<input type="button" id="changePasswordSubmitButton" onclick="submitChangePassword()" value="Change Password">
+			</div>
+			<div id="changeNamePopup" tabindex="3" class="popup hidden">
+				<?php
+					echo '<input type="text" name="newNameInput" id="newNameInput" value="'.$userRealName.'">'
+				?>
+				<input type="button" id="newNameSubmitButton" onclick="submitChangeName()" value="Change Name">
+			</div>
+			<div id="addCreditCardPopup" tabindex="4" class="popup hidden">
+				<input type="text" name="holderNameInput" id="holderNameInput" placeholder="Card Holder Name">
+				<input type="text" name="billingAddressInput" id="billingAddressInput" placeholder="Billing Address">
+				<input type="text" name="cardCompanyInput" id="cardCompanyInput" placeholder="Card Company">
+				<input type="text" name="cardNumberInput" id="cardNumberInput" placeholder="Card Number">
+				<label for="expirationDateInput">Expiration Date</label>
+				<input type="date" name="expirationDateInput" id="expirationDateInput">
+				<input type="text" name="securityCodeInput" id="securityCodeInput" placeholder="Security Code">
+				<input type="button" id="submitNewCreditCardButton" onclick="submitNewCreditCard()" value="Add New Credit Card">
+			</div>
 		</div>
 	</body>
 </html>
