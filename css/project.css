@@ -81,3 +81,18 @@ header{
 .hidden{
   display: none;
 }
+
+.notificationDiv{
+	position: absolute;
+	left: 25vw;
+	width: 50vw;
+	height: 100px;
+	background-color: #00a000;
+}
+
+@keyframes dropInNotification{
+	0%   {top:-100px;}
+	20%  {top:100px;}
+	80%  {top:100px;}
+	100% {top:-100px;}
+}

@@ -32,7 +32,7 @@
 
 				$result = mysqli_query($conn, $query);
 				if (!$result) {	//failed to get user data
-					die("<p class='logInError'>Login first</p>");
+					die("<p class='logInError'>You must log in to use this page</p>");
 				}
 				else{
 					$row = mysqli_fetch_row($result);
@@ -108,6 +108,8 @@
 				<input type="date" name="expirationDateInput" id="expirationDateInput">
 				<input type="text" name="securityCodeInput" id="securityCodeInput" placeholder="Security Code">
 				<input type="button" id="submitNewCreditCardButton" onclick="submitNewCreditCard()" value="Add New Credit Card">
+			</div>
+			<div class="hidden" id="notificationDiv">
 			</div>
 		</div>
 	</body>

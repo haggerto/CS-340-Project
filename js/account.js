@@ -94,6 +94,7 @@ function submitChangePassword(){
 					else if(request.responseText === "\nTRUE"){	//the password was successfully changed
 						document.getElementById("oldPassInput").value = "";
 						document.getElementById("changePasswordPopup").classList.add("hidden");
+						document.getElementById("notificationDiv");
 					}
 					else{
 						console.log(request.responseText);
@@ -110,11 +111,12 @@ function submitChangePassword(){
 function submitNewCreditCard(){
 	//
 }
+if(document.getElementsByClassName("editInfoButton").length!=0){
+	document.getElementsByClassName("editInfoButton")[0].addEventListener("click",showChangePassPopup);
+	document.getElementsByClassName("editInfoButton")[1].addEventListener("click",showChangeNamePopup);
+	document.getElementsByClassName("editInfoButton")[2].addEventListener("click",showAddCreditCardPopup);
 
-document.getElementsByClassName("editInfoButton")[0].addEventListener("click",showChangePassPopup);
-document.getElementsByClassName("editInfoButton")[1].addEventListener("click",showChangeNamePopup);
-document.getElementsByClassName("editInfoButton")[2].addEventListener("click",showAddCreditCardPopup);
-
-document.getElementById("addCreditCardPopup").addEventListener("focusout",checkAddCreditCardPopup);
-document.getElementById("changeNamePopup").addEventListener("focusout",checkChangeNamePopup);
-document.getElementById("changePasswordPopup").addEventListener("focusout",checkChangePassPopup);
+	document.getElementById("addCreditCardPopup").addEventListener("focusout",checkAddCreditCardPopup);
+	document.getElementById("changeNamePopup").addEventListener("focusout",checkChangeNamePopup);
+	document.getElementById("changePasswordPopup").addEventListener("focusout",checkChangePassPopup);
+}
