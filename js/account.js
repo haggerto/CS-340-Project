@@ -86,12 +86,12 @@ function submitChangePassword(){
 			request.onreadystatechange = function (){
 				if(request.readyState === 4 && request.status === 200){
 					document.getElementById("newPassInput").value = "";
-					document.getElementById("confirmPassInput").value = "";
+					document.getElementById("confirmNewPassInput").value = "";
 					if(request.responseText==="BAD_PASS"){	//the old password was entered wrong
 						document.getElementById("oldPassInput").value = "";
 						alert("Error: The old password is incorrect");
 					}
-					else if(request.responseText === "TRUE"){	//the password was successfully changed
+					else if(request.responseText === "\nTRUE"){	//the password was successfully changed
 						document.getElementById("oldPassInput").value = "";
 						document.getElementById("changePasswordPopup").classList.add("hidden");
 					}
@@ -100,7 +100,7 @@ function submitChangePassword(){
 					}
 				}
 			};
-			var requestUrl = "updateAccountInformation.php?type='pass'&oldPass='"+oldPass+"'&newPass='"+newPass+"'";
+			var requestUrl = "updateAccountInformation.php?type=pass&oldPass="+oldPass+"&newPass="+newPass;
 			request.open("POST",requestUrl,true);
 			request.send(null);
 		}
