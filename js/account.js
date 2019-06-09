@@ -94,7 +94,7 @@ function submitChangePassword(){
 					else if(request.responseText === "\nTRUE"){	//the password was successfully changed
 						document.getElementById("oldPassInput").value = "";
 						document.getElementById("changePasswordPopup").classList.add("hidden");
-						document.getElementById("notificationDiv");
+						showNotification("Changed password");
 					}
 					else{
 						console.log(request.responseText);

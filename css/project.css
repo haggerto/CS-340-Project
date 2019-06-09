@@ -91,7 +91,7 @@ header{
 }
 
 #notificationDiv{
-	position: absolute;
+	position: fixed;
 	left: 35vw;
 	top: -100px;
 	width: 30vw;
