@@ -34,7 +34,7 @@
 						  AND Products.productID = OrderContents.productID";
 
 				$result = mysqli_query($conn, $query);
-				if (mysqli_num_rows($result) === 0 || !isset($_SESSION['user'])) {
+				if (mysqli_num_rows($result) === 0) {
 					if(!$_SESSION['user'])
 					{
 						die("<p class='logInError'>Login first</p>");
@@ -45,20 +45,19 @@
 					}	
 				} else {
 					while($row = mysqli_fetch_row($result)) {
-						echo '<div class="cartDiv">';
-						echo '<p class="productName">';
-						echo $row[2];
-						echo '</p>';
-						echo '<p class="productCost">Price:&#36;';
-						echo $row[3];
-						echo '</p>';
-						echo '<p class="productCount">';
-						echo $row[1];
-						echo '</p>';
-						echo '<input type="button" onclick="removeFromCart('.$row[3].', '.$row[4].')" class="removeFromCartButton" value="Remove from Cart">';
-						echo '</div>';
-					}
-					echo "<input type='button' onclick='checkoutCart()' id='checkoutButton' value='Checkout'>";
+			echo '<div class="cartDiv">';
+			echo '<p class="productName">';
+			echo $row[2];
+			echo '</p>';
+			echo '<p class="productCost">Price:&#36;';
+            echo $row[3];
+			echo '</p>';
+			echo '<p class="productCount">';
+			echo $row[1];
+			echo '</p>';
+			echo '<input type="button" onclick="removeFromCart('.$row[3].', '.$row[4].')" class="removeFromCartButton" value="Remove from Cart">';
+			echo '</div>';
+        }	
 				}
 				mysqli_free($result);
 				mysqli_close($conn);
