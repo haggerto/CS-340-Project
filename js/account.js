@@ -67,9 +67,24 @@ function showChangePassPopup(){
 }
 
 function submitChangeName(){
-	//
+	var newName = document.getElementById("newNameInput").value;
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function (){
+		if(request.readyState === 4 && request.status === 200){
+			if(request.responseText){	//the user's name was successfully changed
+				document.getElementById("changeNamePopup").classList.add("hidden");
+				showNotification("Changed name successfully");
+			}
+			else{
+				alert("Failed to change name");
+			}
+		}
+	}
+	request.open("POST","updateAccountInformation.php?type=name&name="+newName,true);
+	request.send(null);
 }
 
+/*Attempts to change the user's password*/
 function submitChangePassword(){
 	var oldPass = document.getElementById("oldPassInput").value;
 	var newPass = document.getElementById("newPassInput").value;
@@ -91,7 +106,7 @@ function submitChangePassword(){
 						document.getElementById("oldPassInput").value = "";
 						alert("Error: The old password is incorrect");
 					}
-					else if(request.responseText === "\nTRUE"){	//the password was successfully changed
+					else if(request.responseText){	//the password was successfully changed
 						document.getElementById("oldPassInput").value = "";
 						document.getElementById("changePasswordPopup").classList.add("hidden");
 						showNotification("Changed password");

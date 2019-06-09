@@ -27,12 +27,23 @@
 			$newPassUpdate = 'UPDATE Users SET password="'.$newPass.'" WHERE userID="'.$_SESSION['user'].'"';
 			$newPassRes = mysqli_query($connection, $newPassUpdate);
 			if($newPassRes){	//check for success
-				echo "TRUE";
+				echo 1;
 			}
 			else{
-				echo "FALSE";
+				echo 0;
 			}
 			break;
+		case name:
+			$newName = mysqli_real_escape_string($connection, $_GET['name']);
+
+			$newNameUpdate = "UPDATE Users SET name='".$newName."' WHERE userID=".$_SESSION['user'];
+			$newNameRes = mysqli_query($connection, $newNameUpdate);
+			if($newNameRes){	//check for success
+				echo 1;
+			}
+			else{
+				echo 0;
+			}
 		default:
 			echo "UNKNOWN_OPERATION";
 	}
