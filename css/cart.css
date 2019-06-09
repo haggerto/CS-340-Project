@@ -1,4 +1,51 @@
-#headerTitle{
-  width: 500px;
-  margin: 10px calc(50vw - 15px - 250px);
+.mainContentBox{
+	text-align: center;
+	overflow-y: auto;
+}
+
+.logInError{
+	font-size: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#cartProductsDiv{
+	display: flex;
+	flex-direction: row;
+	overflow-y: auto;
+	flex-wrap: wrap;
+}
+
+.cartDiv{
+	border: 2px solid #808080;
+	font-size: 30px;
+	margin: 20px;
+	padding: 10px;
+	width: calc(18.75vw - 65px);
+	height: 250px;
+	text-align: center;
+	overflow-y: auto;
+}
+
+.cartDiv > *{
+	margin: 10px 0;
+}
+
+.productName{
+}
+
+.productCost{
+	color: red;
+}
+
+.productCount{
+	color: black;
+}
+
+.removeFromCartButton{
+	background-color: #FFA500;
+	border-radius: 10px;
+	cursor: pointer;
+	font-size: 30px;
 }

@@ -45,18 +45,15 @@
 		case remove:
 			//check if the item is in the shopping cart
 			$checkCart = "SELECT * FROM OrderContents WHERE OrderContents.orderID=".$_GET['orderID']." AND OrderContents.productID=".$_GET['productID'];
-			$row = mysqli_fetch_row(checkCart);
-
+			$res = mysqli_query($connection, $checkCart);
+			$row = mysqli_fetch_row($res);
 			$updateQuery = "";
-			
-			if($row[3] === 0) {
-				echo "0 entries";
-			} else if($row[3] === 1) {
-				echo "1 entry";
+			if(mysqli_num_rows($checkCart) !== 0) {
+				echo "GOOD";
 				$updateQuery = "DELETE FROM OrderContents WHERE OrderContents.orderID =".$_GET['orderID']." AND OrderContents.productID=".$_GET['itemID'];
-			} else {
-				echo "many found";
+				echo $updateQuery;
 			}
+			mysqli_query($connection, $updateQuery);
 			//if there is only 1, delete the entry
 			//if there are more than one, decrement productCount
 			//if there are 0, do nothing.
