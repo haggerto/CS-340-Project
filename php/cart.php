@@ -58,7 +58,7 @@
 						echo '<input type="button" onclick="removeFromCart('.$row[3].', '.$row[4].')" class="removeFromCartButton" value="Remove from Cart">';
 						echo '</div>';
 					}
-					echo "<input type='button' onclick='checkoutCart()' value='Checkout'>";
+					echo "<input type='button' onclick='checkoutCart()' id='checkoutButton' value='Checkout'>";
 				}
 				mysqli_free($result);
 				mysqli_close($conn);

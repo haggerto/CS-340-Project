@@ -40,7 +40,8 @@
 					$update_query = "INSERT INTO OrderContents (productID, orderID, productCount)
 					VALUES (".$_GET['itemID'].", ".$row[0].", 1)";
 				}
-				mysqli_query($connection, $update_query);
+				$updateRes = mysqli_query($connection, $update_query);
+				echo $updateRes;
 			break;
 		case remove:
 			//check if the item is in the shopping cart

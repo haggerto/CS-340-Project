@@ -6,7 +6,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8"></meta>
-		<title>Home Page</title>
+		<title>Products</title>
 		<script src="../js/project.js" charset="utf-8" type="text/javascript" defer></script>
 		<script src="../js/products.js" charset="utf-8" type="text/javascript" defer></script>
 		<script src="../js/home.js" charset="utf-8" type="text/javascript" defer></script>
