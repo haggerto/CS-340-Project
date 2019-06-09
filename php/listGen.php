@@ -5,7 +5,7 @@
 			echo '<p class="productName">';
 			echo $row[0];
 			echo '</p><p class="productCost">Price:&#36;';
-            echo $row[2] - $row[1] * $row[2] / 100;
+            echo $row[1];
             echo '</p>';
 			if(isset($_SESSION['user'])){
 				echo '<input type="button" onclick="addToCart(';
