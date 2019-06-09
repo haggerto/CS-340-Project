@@ -57,7 +57,7 @@ function submitLogIn(){
 				document.getElementById("logInPopupPasswordField").value = "";
 			}
 		}
-		request.open("GET", "handleLogIns.php?type=logIn&user="+submittedUsername+"&pass="+submittedPassword, true);
+		request.open("POST", "handleLogIns.php?type=logIn&user="+submittedUsername+"&pass="+submittedPassword, true);
 		request.send(null);
 	}
 }
