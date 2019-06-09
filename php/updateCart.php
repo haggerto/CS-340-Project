@@ -40,8 +40,7 @@
 					$update_query = "INSERT INTO OrderContents (productID, orderID, productCount)
 					VALUES (".$_GET['itemID'].", ".$row[0].", 1)";
 				}
-				$updateRes = mysqli_query($connection, $update_query);
-				echo $updateRes;
+				mysqli_query($connection, $update_query);
 			break;
 		case remove:
 			//check if the item is in the shopping cart
@@ -61,11 +60,6 @@
 			//if there is only 1, delete the entry
 			//if there are more than one, decrement productCount
 			//if there are 0, do nothing.
-			break;
-		case checkout:
-			$checkoutQuery = "UPDATE Orders SET orderStatus='sent' WHERE userID=".$_SESSION['user']." AND orderStatus='shop'";
-			$res = mysqli_query($connection, $checkoutQuery);
-			echo $res;
 			break;
 		default:
 			echo "UNKNOWN_OPERATION";
