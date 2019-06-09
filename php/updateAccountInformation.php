@@ -13,6 +13,26 @@
 	
 	$getOp = $_GET["type"];
 	switch($getOp){
+		case acc:	//add credit card
+			$cardCompany = mysqli_real_escape_string($connection, $_GET['company']);
+			$cardHolder = mysqli_real_escape_string($connection, $_GET['holder']);
+			$billingAddress = mysqli_real_escape_string($connection, $_GET['address']);
+			$cardNumber = mysqli_real_escape_string($connection, $_GET['num']);
+			$expDate = mysqli_real_escape_string($connection, $_GET['expDate']);
+			$secCode = mysqli_real_escape_string($connection, $_GET['secCode']);
+
+			$addCardQuery = "INSERT INTO CreditCards Values(".$_SESSION['user'].",'".$billingAddress;
+			$addCardQuery .= "','".$cardCompany."',".$cardNumber.",'".$cardHolder."','".$expDate."',".$secCode.")";
+			$addCardRes = mysqli_query($connection, $addCardQuery);
+			echo $addCardRes;
+			break;
+		case rcc:	//remove credit card
+			$cardNum = $_GET['num'];
+
+			$deleteCardQuery = "DELETE FROM CreditCards WHERE customerID=".$_SESSION['user']." AND cardNumber=".$cardNum;
+			$deleteCardRes = mysqli_query($connection, $deleteCardQuery);
+			echo $deleteCardRes;
+			break;
 		case pass:	//change password operation
 			$oldPass = mysqli_real_escape_string($connection, $_GET['oldPass']);
 			$newPass = mysqli_real_escape_string($connection, $_GET['newPass']);
@@ -26,12 +46,7 @@
 
 			$newPassUpdate = 'UPDATE Users SET password="'.$newPass.'" WHERE userID="'.$_SESSION['user'].'"';
 			$newPassRes = mysqli_query($connection, $newPassUpdate);
-			if($newPassRes){	//check for success
-				echo 1;
-			}
-			else{
-				echo 0;
-			}
+			echo $newPassRes;
 			break;
 		case name:
 			$newName = mysqli_real_escape_string($connection, $_GET['name']);
@@ -44,6 +59,7 @@
 			else{
 				echo 0;
 			}
+			break;
 		default:
 			echo "UNKNOWN_OPERATION";
 	}

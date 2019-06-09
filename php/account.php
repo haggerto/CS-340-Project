@@ -59,18 +59,23 @@
 					}
 					else{	//successfully got user data
 						echo "<h2>Credit Cards</h2>";
-						echo "<table class='creditCardDataTable'>";
-						echo "<tr><th></th><th>Company</th><th>Card Number</th><th>Card Holder</th></tr>";
-						while($row = mysqli_fetch_row($ccData)){	//add the credit card details
-							echo "<tr><td><span class='removeCreditCardButton'>X</span></td><td>";
-							echo $row[2];
-							echo "</td><td>";
-							echo $row[3];
-							echo "</td><td>";
-							echo $row[4];
-							echo "</td></tr>";
+						if(mysqli_num_rows($ccData)===0){	//user has no credit cards
+							echo "<p>No Credit Cards Are Associated With This User</p>";
 						}
-						echo "</table>";
+						else{
+							echo "<table class='creditCardDataTable'>";
+							echo "<tr><th></th><th>Company</th><th>Card Number</th><th>Card Holder</th></tr>";
+							while($row = mysqli_fetch_row($ccData)){	//add the credit card details
+								echo "<tr><td><span class='removeCreditCardButton'>X</span></td><td>";
+								echo $row[2];
+								echo "</td><td>";
+								echo $row[3];
+								echo "</td><td>";
+								echo $row[4];
+								echo "</td></tr>";
+							}
+							echo "</table>";
+						}
 						/*Add buttons for changing account properties*/
 						echo "<p><span class='editInfoButton'>Change Password</span>";
 						echo "<span class='editInfoButton'>Change Name</span>";
