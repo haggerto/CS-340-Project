@@ -1,4 +1,5 @@
 <header>
+	<div class="hidden" id="notificationDiv"></div>
 	<div id="headerTitle"><?php echo $currentpage ?></div>
 	<?php
 		session_start();

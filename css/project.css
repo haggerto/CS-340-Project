@@ -89,3 +89,27 @@ header{
 .hidden{
   display: none;
 }
+
+#notificationDiv{
+	position: absolute;
+	left: 35vw;
+	top: -100px;
+	width: 30vw;
+	height: 75px;
+	z-index: 100;
+	border: 2px solid black;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 50px;
+	overflow: hidden;
+	background-color: rgba(0,176,0,0.7);
+	animation-name: dropInNotification;
+	animation-duration: 5s;
+}
+
+@keyframes dropInNotification{
+	0%   {top:-100px;}
+	20%  {top:0;}
+	80%  {top:0;}
+	100% {top:-100px;}
+}
