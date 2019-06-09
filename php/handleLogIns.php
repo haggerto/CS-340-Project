@@ -31,14 +31,14 @@
 		if(mysqli_num_rows($result) == 1){	//the username and password matched
 			$_SESSION['user'] = mysqli_fetch_row($result)[0];	//log in the user with a php session
 			if(isset($_SESSION['user'])){	//session was successfully created
-				echo "TRUE";
+				echo 1;
 			}
 			else{
-				echo "FALSE";
+				echo 0;
 			}
 		}
 		else{
-			echo "FALSE";
+			echo 0;
 		}
 		mysqli_free_result($result);
 		mysqli_close($connection);
