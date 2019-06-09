@@ -48,6 +48,28 @@ function containsFocusedElement(element){
 	return Boolean(0);
 }
 
+function removeCreditCard(event){
+	if(event.target.classList.contains("removeCreditCardButton")){
+		var tableRow = event.target.parentElement.parentElement;
+		var tableElements = tableRow.getElementsByTagName("td");
+		var cardNum = tableElements[2].innerHTML;
+		
+		var request = new XMLHttpRequest();
+		request.onreadystatechange = function (){
+			if(request.readyState === 4 && request.status === 200){
+				if(request.responseText==1){
+					location.reload(true);
+				}
+				else{
+					alert("Failed to delete credit card");
+				}
+			}
+		}
+		request.open("POST","updateAccountInformation.php?type=rcc&num='"+cardNum+"'",true);
+		request.send(null)
+	}
+}
+
 /*Shows the add credit card popup*/
 function showAddCreditCardPopup(){
 	document.getElementById("addCreditCardPopup").classList.remove("hidden");
@@ -66,6 +88,7 @@ function showChangePassPopup(){
 	document.getElementById("changePasswordPopup").focus();
 }
 
+/*Attempts to change the user's real name in the database*/
 function submitChangeName(){
 	var newName = document.getElementById("newNameInput").value;
 	var request = new XMLHttpRequest();
@@ -109,7 +132,7 @@ function submitChangePassword(){
 					else if(request.responseText){	//the password was successfully changed
 						document.getElementById("oldPassInput").value = "";
 						document.getElementById("changePasswordPopup").classList.add("hidden");
-						showNotification("Changed password");
+						showNotification("Changed password successfully");
 					}
 					else{
 						console.log(request.responseText);
@@ -123,8 +146,41 @@ function submitChangePassword(){
 	}
 }
 
+/*Attempts to add a new credit card*/
 function submitNewCreditCard(){
-	//
+	var creditCardNum = document.getElementById("cardNumberInput").value;
+	if(creditCardNum.length===16){
+		alert("The number you entered may be a valid credit card. DO NOT use a real credit card number as this site is as secure as a backyard shed with no walls");
+	}
+	else{	//the credit card number is not real
+		var ccHolder = document.getElementById("holderNameInput").value;
+		var address = document.getElementById("billingAddressInput").value;
+		var ccCompany = document.getElementById("cardCompanyInput").value;
+		var expDate = document.getElementById("expirationDateInput").value;
+		var secCode = document.getElementById("securityCodeInput").value;
+
+		var request = new XMLHttpRequest();
+		request.onreadystatechange = function (){
+			if(request.readyState === 4 && request.status === 200){
+				document.getElementById("holderNameInput").value = "";
+				document.getElementById("billingAddressInput").value = "";
+				document.getElementById("cardCompanyInput").value = "";
+				document.getElementById("expirationDateInput").value = "";
+				document.getElementById("securityCodeInput").value = "";
+				document.getElementById("cardNumberInput").value = "";
+				if(request.responseText){	//check if the credit card was added
+					location.reload(true);
+				}
+				else{
+					alert("Failed to add credit card");
+				}
+			}
+		}
+		var reqUrl = "updateAccountInformation.php?type=acc&company="+ccCompany+"&holder="+ccHolder;
+		reqUrl += "&address="+address+"&num="+creditCardNum+"&expDate="+expDate+"&secCode="+secCode;
+		request.open("POST",reqUrl,true);
+		request.send(null);
+	}
 }
 if(document.getElementsByClassName("editInfoButton").length!=0){
 	document.getElementsByClassName("editInfoButton")[0].addEventListener("click",showChangePassPopup);
@@ -134,4 +190,6 @@ if(document.getElementsByClassName("editInfoButton").length!=0){
 	document.getElementById("addCreditCardPopup").addEventListener("focusout",checkAddCreditCardPopup);
 	document.getElementById("changeNamePopup").addEventListener("focusout",checkChangeNamePopup);
 	document.getElementById("changePasswordPopup").addEventListener("focusout",checkChangePassPopup);
+
+	document.getElementsByClassName("creditCardDataTable")[0].addEventListener("click", removeCreditCard);
 }
