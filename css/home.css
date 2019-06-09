@@ -24,11 +24,11 @@
 }
 
 .productCost{
-	color: #dbb000;
+	color: red;
 }
 
 .addToCartButton{
-	background-color: #b0b000;
+	background-color: #32CD32;
 	border-radius: 10px;
 	cursor: pointer;
 	font-size: 30px;
