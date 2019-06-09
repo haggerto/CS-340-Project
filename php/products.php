@@ -18,7 +18,7 @@
 		include 'header.php';
 	?>
 
-		<div id="hotProductsDiv" class="mainContentBox">
+		<div id="ProductsDiv" class="mainContentBox">
 			<?php
 
 				$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -34,24 +34,25 @@
 					die("Query to show fields from table failed");
 				}
 				$fields_num = mysqli_num_fields($result);
-				echo "<h1>Products:</h1>";
-				echo "<table id='t01' border='1'><tr>";
-
-				echo "</tr>\n";
 
 				while($row = mysqli_fetch_row($result)) {
-					echo "<tr>";
-					// $row is array... foreach( .. ) puts every element
-					// of $row to $cell variable
-					foreach($row as $cell){
-						echo "<td>$cell</td>";
-						echo "</tr>\n";
+					echo '<div class="bestSellerDiv">';
+					echo '<p class="productName">';
+					echo $row[0];
+					echo '</p><p class="productCost">&#36;';
+					echo $row[1];
+					echo '</p>';
+					if(isset($_SESSION['user'])){
+						echo '<input type="button" onclick="addToCart(';
+						echo $row[2];
+						echo ')" class="addToCartButton" value="Add to Cart">';
 					}
+					echo '</div>';
 				}
 
 				mysqli_free_result($result);
 				mysqli_close($conn);
 			?>
-		</div>
-	</body>
-</html>
+			</div>
+		</body>
+	</html>
