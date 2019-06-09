@@ -26,12 +26,15 @@
 					die('Could not connect: ' . mysql_error());
 				}
 				// Retrieve name of table selected
+				session_start();
 
-				$query = "SELECT productName, productCount, orderID FROM Products NATURAL JOIN (SELECT * FROM OrderContents NATURAL JOIN (SELECT * FROM Orders WHERE userID=”$currentUser” AND orderStatus=”shop”))
-				";
-				
+				$query = "SELECT Products.productID, productCount, Products.productName 
+						  FROM Orders, OrderContents, Products 
+						  WHERE Orders.userID=".$_SESSION['user']." AND OrderContents.orderID = Orders.orderID 
+						  AND Products.productID = OrderContents.productID";
+
 				$result = mysqli_query($conn, $query);
-				if (!$result) {
+				if (mysqli_num_rows($result) === 0) {
 					if(!$_SESSION['user'])
 					{
 						die("<p class='logInError'>Login first</p>");
@@ -39,24 +42,15 @@
 					else
 					{
 						die("Query to show fields from table failed");
-					}
+					}	
+				} else {
+					foreach($result as $row) {
+						echo "<div>";
+						echo $row['productID'];
+						echo "</div>";
+					}	
 				}
-				$fields_num = mysqli_num_fields($result);
-				echo "<h1>Cart:</h1>";
-				echo "<table id='t01' border='1'><tr>";
-				echo "</tr>\n";
-
-				while($row = mysqli_fetch_row($result)) {
-					echo "<tr>";
-					// $row is array... foreach( .. ) puts every element
-					// of $row to $cell variable
-					foreach($row as $cell){
-						echo "<td>$cell</td>";
-					}
-					echo "</tr>\n";
-				}
-
-				mysqli_free_result($result);
+				mysqli_free($result);
 				mysqli_close($conn);
 			?>
 		</div>

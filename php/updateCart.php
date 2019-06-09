@@ -20,12 +20,33 @@
 				$existingOrderResult = mysqli_query($connection, $existingOrderQuery);
 
 				if(mysqli_num_rows($existingOrderResult) === 0) {
-					$query = sprintf("INSERT INTO Orders VALUES(NULL, %d, 0, 'none', 'shop', 0, 00000)", $_SESSION['user']);
+					$query = sprintf("INSERT INTO Orders VALUES(UUID(), %d, 0, 'none', 'shop', 0, 00000)", $_SESSION['user']);
 					$res =  mysqli_query($connection, $query);
-					echo $res;
-				} else {
-					echo "TRUE";
 				}
+
+				$orderID = mysqli_query($connection, "SELECT orderID FROM Orders WHERE userID=".$_SESSION['user']." AND orderStatus='shop'");
+				$row = mysqli_fetch_row($orderID);
+				echo $row[0];
+
+				$orderContents = mysqli_query($connection, "SELECT * FROM OrderContents WHERE OrderContents.orderID = ".$row[0]." AND OrderContents.productID =".$_GET['itemID']);
+				
+				$update_query = "";
+				if(mysqli_num_rows($orderContents) !== 0) {
+					$update_query = "UPDATE OrderContents
+					SET productCount = productCount + 1
+					WHERE orderID =".$row[0]." AND productID =".$_GET['itemID'];
+					echo "Adding to existing OrderContents";
+				}
+				else{
+					$update_query = "INSERT INTO OrderContents (productID, orderID, productCount)
+					VALUES (".$_GET['itemID'].", ".$row[0].", 1)";
+					echo "Adding new OrderContents";
+				}
+				echo "\n\n\n";
+				echo $update_query;
+				echo "\n";
+				mysqli_query($connection, $update_query);
+
 				//if they do, check if the item is already in the orderContents with that orderID
 				//if it is, increment the count
 				//if it is not, add it with a count of 1
