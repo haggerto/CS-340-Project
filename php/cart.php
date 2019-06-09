@@ -32,7 +32,14 @@
 				
 				$result = mysqli_query($conn, $query);
 				if (!$result) {
-					die("Query to show fields from table failed");
+					if(!$_SESSION['user'])
+					{
+						die("<p class='logInError'>Login first</p>");
+					}
+					else
+					{
+						die("Query to show fields from table failed");
+					}
 				}
 				$fields_num = mysqli_num_fields($result);
 				echo "<h1>Cart:</h1>";
