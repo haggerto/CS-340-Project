@@ -16,6 +16,7 @@
 	<?php
 		include 'dbconnect.php';
 		include 'header.php';
+		include 'listGen.php'
 	?>
 
 		<div id="ProductsDiv" class="mainContentBox">
@@ -35,20 +36,7 @@
 				}
 				$fields_num = mysqli_num_fields($result);
 
-				while($row = mysqli_fetch_row($result)) {
-					echo '<div class="bestSellerDiv">';
-					echo '<p class="productName">';
-					echo $row[0];
-					echo '</p><p class="productCost">&#36;';
-					echo $row[1];
-					echo '</p>';
-					if(isset($_SESSION['user'])){
-						echo '<input type="button" onclick="addToCart(';
-						echo $row[2];
-						echo ')" class="addToCartButton" value="Add to Cart">';
-					}
-					echo '</div>';
-				}
+				listProduct($result);
 
 				mysqli_free_result($result);
 				mysqli_close($conn);

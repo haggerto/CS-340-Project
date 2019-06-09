@@ -16,6 +16,7 @@
 	<?php
 		include 'dbconnect.php';
 		include 'header.php';
+		include 'listGen.php'
 	?>
 
 		<div id="hotProductsDiv" class="mainContentBox">
@@ -24,32 +25,18 @@
 				if (!$conn) {
 					die('Could not connect: ' . mysql_error());
 				}
-				$query = 'SELECT productName, normalPrice, discountAmount, endDate
-								FROM Products NATURAL JOIN (
-									SELECT * FROM Sale Details NATURAL JOIN (
-										SELECT discountID FROM Sales
-										WHERE startDate <= `$currentDate` AND
-											endDate >= `$currentDate` AND
-											discountType = "open"))';
+				$query = 'SELECT productName, discountAmount, normalPrice
+						  FROM Products NATURAL JOIN (
+							  SELECT * FROM SaleDetails NATURAL JOIN (
+								  SELECT * FROM Sales WHERE discountType="open") table1) table2';
 
 				$result = mysqli_query($conn, $query);
 				if (!$result) {
 					die("Query to show fields from table failed");
 				}
 				$fields_num = mysqli_num_fields($result);
-				echo "<h1>On Sale:</h1>";
-				echo "<table id='t01' border='1'><tr>";
 
-				echo "</tr>\n";
-				while($row = mysqli_fetch_row($result)) {
-					echo "<tr>";
-					// $row is array... foreach( .. ) puts every element
-					// of $row to $cell variable
-					foreach($row as $cell){
-						echo "<td>$cell</td>";
-						echo "</tr>\n";
-					}
-				}
+				listSale($result);
 
 				mysqli_free_result($result);
 				mysqli_close($conn);
