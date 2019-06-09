@@ -15,14 +15,18 @@
 	switch($getOp){
 		case add:
 				//check if the user has an existing order
-				$existingOrderQuery = sprintf('SELECT * FROM Orders WHERE Orders.userID = %d AND Orders.orderStatus = %s', $_GET['userID'] ,'shop');
+				
+				$existingOrderQuery = "SELECT * FROM Orders WHERE userID = " . $_SESSION['user'] . " AND orderStatus = 'shop'";
+				$existingOrderResult = mysqli_query($connection, $$existingOrderQuery);
+
 				echo $existingOrderQuery;
-				echo '  ';
-				$existingOrderResult = mysqli_query($connection, $existingOrderQuery);
 
 				if(mysql_num_rows($existingOrderResult) == 0) {
-					$query = sprintf('INSERT INTO Orders (userID, totalCost, shippingAddress, orderStatus, totalWeight, shippingZip) VALUES( %d, 0, \'none\', shop, 0, 00000)', $_SESSION['user']);
+					$query = sprintf("INSERT INTO Orders (userID, totalCost, shippingAddress, orderStatus, totalWeight, shippingZip) VALUES( %d, 0, 'none', 'shop', 0, 00000)", $_SESSION['user']);
 					mysqli_query($connection, $query);
+
+					echo $query;
+
 					echo "FALSE";
 				} else {
 					echo "TRUE";
