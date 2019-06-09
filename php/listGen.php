@@ -28,7 +28,7 @@
                 echo '</p>';
                 if(isset($_SESSION['user'])){
                     echo '<input type="button" onclick="addToCart(';
-                    echo $row[2];
+                    echo $row[3];
                     echo ')" class="addToCartButton" value="Add to Cart">';
                 }
                 echo '</div>';

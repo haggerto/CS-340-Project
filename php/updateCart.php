@@ -35,23 +35,31 @@
 					$update_query = "UPDATE OrderContents
 					SET productCount = productCount + 1
 					WHERE orderID =".$row[0]." AND productID =".$_GET['itemID'];
-					echo "Adding to existing OrderContents";
 				}
 				else{
 					$update_query = "INSERT INTO OrderContents (productID, orderID, productCount)
 					VALUES (".$_GET['itemID'].", ".$row[0].", 1)";
-					echo "Adding new OrderContents";
 				}
-				echo "\n\n\n";
-				echo $update_query;
-				echo "\n";
 				mysqli_query($connection, $update_query);
+			break;
+		case remove:
+			//check if the item is in the shopping cart
+			$checkCart = "SELECT * FROM OrderContents WHERE OrderContents.orderID=".$_GET['orderID']." AND OrderContents.productID=".$_GET['productID'];
+			$row = mysqli_fetch_row(checkCart);
 
-				//if they do, check if the item is already in the orderContents with that orderID
-				//if it is, increment the count
-				//if it is not, add it with a count of 1
-				//if they do not already have an order, create one and an orderContents
-				//add the productID to the ordercontents.
+			$updateQuery = "";
+			
+			if($row[3] === 0) {
+				echo "0 entries";
+			} else if($row[3] === 1) {
+				echo "1 entry";
+				$updateQuery = "DELETE FROM OrderContents WHERE OrderContents.orderID =".$_GET['orderID']." AND OrderContents.productID=".$_GET['itemID'];
+			} else {
+				echo "many found";
+			}
+			//if there is only 1, delete the entry
+			//if there are more than one, decrement productCount
+			//if there are 0, do nothing.
 			break;
 		default:
 			echo "UNKNOWN_OPERATION";

@@ -7,3 +7,10 @@ function addToCart(id){
   request.open("POST", requestUrl, true);
   request.send(null);
 }
+
+function removeFromCart(orderID, productID){
+  var request = new XMLHttpRequest();
+  var requestUrl = "updateCart.php?type=remove&itemID="+id+"&orderID="+orderID;
+  request.open("POST", requestUrl, true);
+  request.send(null);
+}

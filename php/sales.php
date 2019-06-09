@@ -9,6 +9,7 @@
 		<title>Sales</title>
 		<script src="../js/project.js" charset="utf-8" type="text/javascript" defer></script>
 		<script src="../js/sales.js" charset="utf-8" type="text/javascript" defer></script>
+		<script src="../js/home.js" charset="utf-8" type="text/javascript" defer></script>
 		<link rel="stylesheet" href="../css/project.css">
 		<link rel="stylesheet" href="../css/sales.css">
 	</head>
@@ -25,7 +26,7 @@
 				if (!$conn) {
 					die('Could not connect: ' . mysql_error());
 				}
-				$query = 'SELECT productName, discountAmount, normalPrice
+				$query = 'SELECT productName, discountAmount, normalPrice, productID
 						  FROM Products NATURAL JOIN (
 							  SELECT * FROM SaleDetails NATURAL JOIN (
 								  SELECT * FROM Sales WHERE discountType="open") table1) table2';

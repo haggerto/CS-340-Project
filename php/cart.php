@@ -28,7 +28,7 @@
 				// Retrieve name of table selected
 				session_start();
 
-				$query = "SELECT Products.productID, productCount, Products.productName 
+				$query = "SELECT Products.productID, productCount, Products.productName, Products.normalPrice, OrderContents.orderID
 						  FROM Orders, OrderContents, Products 
 						  WHERE Orders.userID=".$_SESSION['user']." AND OrderContents.orderID = Orders.orderID 
 						  AND Products.productID = OrderContents.productID";
@@ -44,11 +44,20 @@
 						die("Query to show fields from table failed");
 					}	
 				} else {
-					foreach($result as $row) {
-						echo "<div>";
-						echo $row['productID'];
-						echo "</div>";
-					}	
+					while($row = mysqli_fetch_row($result)) {
+			echo '<div class="cartDiv">';
+			echo '<p class="productName">';
+			echo $row[2];
+			echo '</p>';
+			echo '<p class="productCost">Price:&#36;';
+            echo $row[3];
+			echo '</p>';
+			echo '<p class="productCount">';
+			echo $row[1];
+			echo '</p>';
+			echo '<input type="button" onclick="removeFromCart('.$row[3].', '.$row[4].')" class="removeFromCartButton" value="Remove from Cart">';
+			echo '</div>';
+        }	
 				}
 				mysqli_free($result);
 				mysqli_close($conn);

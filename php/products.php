@@ -9,6 +9,7 @@
 		<title>Home Page</title>
 		<script src="../js/project.js" charset="utf-8" type="text/javascript" defer></script>
 		<script src="../js/products.js" charset="utf-8" type="text/javascript" defer></script>
+		<script src="../js/home.js" charset="utf-8" type="text/javascript" defer></script>
 		<link rel="stylesheet" href="../css/project.css">
 		<link rel="stylesheet" href="../css/products.css">
 	</head>
@@ -28,7 +29,7 @@
 				}
 				// Retrieve name of table selected
 
-				$query = "SELECT productName, normalPrice FROM Products WHERE numberInStock > 0";
+				$query = "SELECT productName, normalPrice, productID FROM Products WHERE numberInStock > 0";
 
 				$result = mysqli_query($conn, $query);
 				if (!$result) {
