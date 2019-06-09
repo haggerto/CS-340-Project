@@ -72,7 +72,8 @@ header{
 
 .mainContentBox{
   margin: 25px calc(12.5vw - 2px);
-  height: 506px;
+  min-height: 506px;
+  overflow: auto;
   width: 75vw;
   background-color: #fff;
   border: 5px solid #808080;

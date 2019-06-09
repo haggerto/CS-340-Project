@@ -27,16 +27,16 @@
 				}
 				// Retrieve name of table selected
 
-				$query = "SELECT productName, normalPrice FROM Products WHERE numberInStock > 0";
-
+				$query = "SELECT productName, productCount, orderID FROM Products NATURAL JOIN (SELECT * FROM OrderContents NATURAL JOIN (SELECT * FROM Orders WHERE userID=”$currentUser” AND orderStatus=”shop”))
+				";
+				
 				$result = mysqli_query($conn, $query);
 				if (!$result) {
 					die("Query to show fields from table failed");
 				}
 				$fields_num = mysqli_num_fields($result);
-				echo "<h1>Products:</h1>";
+				echo "<h1>Cart:</h1>";
 				echo "<table id='t01' border='1'><tr>";
-
 				echo "</tr>\n";
 
 				while($row = mysqli_fetch_row($result)) {
@@ -45,8 +45,8 @@
 					// of $row to $cell variable
 					foreach($row as $cell){
 						echo "<td>$cell</td>";
-						echo "</tr>\n";
 					}
+					echo "</tr>\n";
 				}
 
 				mysqli_free_result($result);
