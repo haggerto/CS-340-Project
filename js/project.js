@@ -42,7 +42,7 @@ function submitLogIn(){
 		var request = new XMLHttpRequest();
 		request.onreadystatechange = function () {
 			if(request.readyState === 4 && request.status === 200){	//got a response
-				if(request.responseText == "\nTRUE"){	//log in was successful
+				if(request.responseText === "\nTRUE"){	//log in was successful
 					document.getElementById("logInPopup").classList.add("hidden");	//hide the log in popup
 					var logOutHtml = "<div id=\"logOutButton\" class=\"logInOutButton\">Log Out</div>";
 					document.getElementById("logInButton").outerHTML = logOutHtml;
