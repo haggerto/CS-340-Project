@@ -34,8 +34,8 @@
 						  AND Products.productID = OrderContents.productID";
 
 				$result = mysqli_query($conn, $query);
-				if (mysqli_num_rows($result) === 0 || !isset($_SESSION['user'])) {
-					if(!isset($_SESSION['user'])){
+				if (!$result) {
+					if(!$_SESSION['user']){
 						die("<p class='logInError'>You must log in to use this page</p>");
 					}
 					else
