@@ -3,4 +3,5 @@ function removeFromCart(orderID, productID){
     var requestUrl = "updateCart.php?type=remove&itemID="+productID+"&orderID="+orderID;
     request.open("POST", requestUrl, true);
     request.send(null);
+    window.location.reload(true); 
   }
