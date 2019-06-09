@@ -22,18 +22,17 @@ function logOut(event){
 			document.getElementById("logOutButton").outerHTML = logInHtml;
 			document.getElementById("logInButton").addEventListener("click",logInButtonClicked);
 			location.reload(true); //refresh the page
-			showNotification("Logged out");
 		}
 	}
 	request.open("GET", "handleLogIns.php?type=logOut", true);
 	request.send(null);
 }
 
+/*Displays a notification via a drop down div*/
 function showNotification(message){
 	if(document.getElementById("notificationDiv") && document.getElementById("notificationDiv").classList.contains("hidden")){
 		document.getElementById("notificationDiv").textContent = message;
 		document.getElementById("notificationDiv").classList.remove("hidden");
-		document.getElementById("notificationDiv").style.webkitAnimationPlayState = "paused";
 		document.getElementById("notificationDiv").style.webkitAnimationPlayState = "running";
 		function animationOver(){
 			document.getElementById("notificationDiv").classList.add("hidden");
