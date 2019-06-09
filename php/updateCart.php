@@ -6,16 +6,16 @@
 	}
 
 	session_start();
-	
+
 	if(!isset($_SESSION['user'])){	//confirm that a user is logged in
 		die("NO_USER");
 	}
-	
+
 	$getOp = $_GET["type"];
 	switch($getOp){
 		case add:
 				//check if the user has an existing order
-				
+
 				$existingOrderQuery = "SELECT * FROM Orders WHERE userID=".$_SESSION['user']." AND orderStatus='shop'";
 				$existingOrderResult = mysqli_query($connection, $existingOrderQuery);
 
@@ -29,7 +29,7 @@
 				echo $row[0];
 
 				$orderContents = mysqli_query($connection, "SELECT * FROM OrderContents WHERE OrderContents.orderID = ".$row[0]." AND OrderContents.productID =".$_GET['itemID']);
-				
+
 				$update_query = "";
 				if(mysqli_num_rows($orderContents) !== 0) {
 					$update_query = "UPDATE OrderContents
@@ -49,14 +49,14 @@
 			$row = mysqli_fetch_row($res);
 			$updateQuery = "";
 			if(mysqli_num_rows($checkCart) !== 0) {
-				echo "GOOD";
 				$updateQuery = "DELETE FROM OrderContents WHERE OrderContents.orderID =".$_GET['orderID']." AND OrderContents.productID=".$_GET['itemID'];
-				echo $updateQuery;
 			}
-			mysqli_query($connection, $updateQuery);
-			//if there is only 1, delete the entry
-			//if there are more than one, decrement productCount
-			//if there are 0, do nothing.
+			echo mysqli_query($connection, $updateQuery);
+			break;
+		case checkout:	//checkout the shopping cart
+			$checkoutQuery = "UPDATE Orders SET orderStatus='sent' WHERE userID=".$_SESSION['user']." AND orderStatus='shop'";
+			$res = mysqli_query($connection, $checkoutQuery);
+			echo $res;
 			break;
 		default:
 			echo "UNKNOWN_OPERATION";

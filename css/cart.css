@@ -1,51 +1,54 @@
-.mainContentBox{
-	text-align: center;
-	overflow-y: auto;
+#headerTitle{
+	width: 500px;
+	margin: 10px calc(50vw - 15px - 250px);
 }
 
-.logInError{
-	font-size: 50px;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-}
-
-#cartProductsDiv{
-	display: flex;
-	flex-direction: row;
-	overflow-y: auto;
-	flex-wrap: wrap;
+input{
+	font-size: 30px;
+	cursor: pointer;
 }
 
 .cartDiv{
-	border: 2px solid #808080;
+	display: flex;
 	font-size: 30px;
-	margin: 20px;
-	padding: 10px;
-	width: calc(18.75vw - 65px);
-	height: 250px;
+	height: 100px;
+}
+
+.cartDiv > p, .cartDiv > input{
+	height: 97.6px;
+	margin: 0;
+	border: 1px solid #808080;
+	border-bottom: 2px solid black;
+
+	/*stretches the elements to fill the horizontal space*/
+	flex:1;
+}
+
+.cartDiv > input{
+	height: 100px;
+}
+
+p.productName{
+	border-left-style: none;
+}
+
+input.removeFromCartButton{
+	border-right-style: none;
+}
+
+.removeFromCartButton:hover{
+	background-color: #ff4040;
+}
+
+#checkoutButton{
+	width: 200px;
+	margin: 20px calc(37.5vw - 100px);
 	text-align: center;
-	overflow-y: auto;
-}
-
-.cartDiv > *{
-	margin: 10px 0;
-}
-
-.productName{
-}
-
-.productCost{
-	color: red;
-}
-
-.productCount{
-	color: black;
-}
-
-.removeFromCartButton{
-	background-color: #FFA500;
+	font-size: 40px;
 	border-radius: 10px;
-	cursor: pointer;
-	font-size: 30px;
+	border: 2px solid black;
+}
+
+#checkoutButton:hover{
+	background-color: #f0f000;
 }

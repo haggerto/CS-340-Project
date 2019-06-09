@@ -29,19 +29,19 @@
 				session_start();
 
 				$query = "SELECT Products.productID, productCount, Products.productName, Products.normalPrice, OrderContents.orderID
-						  FROM Orders, OrderContents, Products 
-						  WHERE Orders.userID=".$_SESSION['user']." AND OrderContents.orderID = Orders.orderID 
+						  FROM Orders, OrderContents, Products
+						  WHERE Orders.userID=".$_SESSION['user']." AND OrderContents.orderID = Orders.orderID
 						  AND Products.productID = OrderContents.productID";
 
 				$result = mysqli_query($conn, $query);
-				if (mysqli_num_rows($result) === 0 || !isset($_SESSION['user'])) {
+				if (!$result) {
 					if(!isset($_SESSION['user'])){
 						die("<p class='logInError'>You must log in to use this page</p>");
 					}
 					else
 					{
 						die("Query to show fields from table failed");
-					}	
+					}
 				} else {
 					while($row = mysqli_fetch_row($result)) {
 						echo '<div class="cartDiv">';
@@ -56,7 +56,8 @@
 						echo '</p>';
 						echo '<input type="button" onclick="removeFromCart('.$row[4].', '.$row[0].')" class="removeFromCartButton" value="Remove from Cart">';
 						echo '</div>';
-        			}	
+        	}
+					echo "<input type='button' onclick='checkoutCart()' id='checkoutButton' value='Checkout'>";
 				}
 				mysqli_free($result);
 				mysqli_close($conn);
