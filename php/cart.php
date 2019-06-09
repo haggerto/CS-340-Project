@@ -34,9 +34,8 @@
 						  AND Products.productID = OrderContents.productID";
 
 				$result = mysqli_query($conn, $query);
-				if (!$result) {
-					if(!$_SESSION['user'])
-					{
+				if (mysqli_num_rows($result) === 0 || !isset($_SESSION['user'])) {
+					if(!isset($_SESSION['user'])){
 						die("<p class='logInError'>You must log in to use this page</p>");
 					}
 					else
@@ -49,8 +48,8 @@
 						echo '<p class="productName">';
 						echo $row[2];
 						echo '</p>';
-						echo '<p class="productCost">Price:&#36;';
-						echo $row[3];
+						echo '<p class="productCost">Total Cost:&#36;';
+						echo intval($row[3])*intval($row[1]);
 						echo '</p>';
 						echo '<p class="productCount">';
 						echo $row[1];
