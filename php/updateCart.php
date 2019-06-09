@@ -61,6 +61,11 @@
 			//if there are more than one, decrement productCount
 			//if there are 0, do nothing.
 			break;
+		case checkout:
+			$checkoutQuery = "UPDATE Orders SET orderStatus='sent' WHERE userID=".$_SESSION['user']." AND orderStatus='shop'";
+			$res = mysqli_query($connection, $checkoutQuery);
+			echo $res;
+			break;
 		default:
 			echo "UNKNOWN_OPERATION";
 			break;
