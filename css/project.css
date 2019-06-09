@@ -87,7 +87,10 @@ header{
 	left: 25vw;
 	width: 50vw;
 	height: 100px;
+	text-align: center;
 	background-color: #00a000;
+	animation-name: dropInNotification;
+	animation-duration: 5s;
 }
 
 @keyframes dropInNotification{

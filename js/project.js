@@ -22,10 +22,25 @@ function logOut(event){
 			document.getElementById("logOutButton").outerHTML = logInHtml;
 			document.getElementById("logInButton").addEventListener("click",logInButtonClicked);
 			location.reload(true); //refresh the page
+			showNotification("Logged out");
 		}
 	}
 	request.open("GET", "handleLogIns.php?type=logOut", true);
 	request.send(null);
+}
+
+function showNotification(message){
+	if(document.getElementById("notificationDiv") && document.getElementById("notificationDiv").classList.contains("hidden")){
+		document.getElementById("notificationDiv").textContent = message;
+		document.getElementById("notificationDiv").classList.remove("hidden");
+		document.getElementById("notificationDiv").style.webkitAnimationPlayState = "paused";
+		document.getElementById("notificationDiv").style.webkitAnimationPlayState = "running";
+		function animationOver(){
+			document.getElementById("notificationDiv").classList.add("hidden");
+			document.getElementId("notificationDiv").removeEventListener("animationend", animationOver);
+		}
+		document.getElementById("notificationDiv").addEventListener("animationend",animationOver);
+	}
 }
 
 /*Run when the submit log in button is pressed*/
