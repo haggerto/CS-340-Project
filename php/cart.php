@@ -30,7 +30,7 @@
 
 				$query = "SELECT Products.productID, productCount, Products.productName, Products.normalPrice, OrderContents.orderID
 						  FROM Orders, OrderContents, Products
-						  WHERE Orders.userID=".$_SESSION['user']." AND OrderContents.orderID = Orders.orderID
+						  WHERE Orders.userID=".$_SESSION['user']." AND OrderContents.orderID = Orders.orderID AND Orders.orderStatus = 'shop'
 						  AND Products.productID = OrderContents.productID";
 
 				$result = mysqli_query($conn, $query);
